@@ -1,0 +1,189 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "com.jr.jrhub",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.19.3",
+      "toolsId": "770b5c66-9efb-4df6-9077-c2a963b8bfdb"
+    },
+    "dataSources": {
+      "GastosService": {
+        "uri": "/localService/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/metadata.xml"
+        }
+      
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.141.3",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.tnt": {},
+        "sap.viz": {},
+        "sap.ui.layout": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "gastosLocal": {
+        "dataSource": "GastosService",
+        "type": "sap.ui.model.json.JSONModel"
+        
+      },
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.jr.jrhub.i18n.i18n",
+          "supportedLocales": [
+            ""
+          ],
+          "fallbackLocale": ""
+        }
+      }
+    },
+    
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "navContainer",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.jr.jrhub.view",
+        "async": true,
+        "viewPath": "com.jr.jrhub.view"
+      },
+      "routes": [
+        {
+          "name": "RouteApp",
+          "pattern": ":?query:",
+          "target": [
+            "TargetApp"
+          ]
+        },
+        {
+          "pattern": "basico",
+          "name": "basico",
+          "target": "basico"
+        },
+        {
+          "pattern": "intermedio",
+          "name": "intermedio",
+          "target": "intermedio"
+        },
+        {
+          "pattern": "graficos",
+          "name": "graficos",
+          "target": "graficos"
+        },
+        {
+          "pattern": "logica",
+          "name": "logica",
+          "target": "logica"
+        },
+        {
+          "pattern": "tres",
+          "name": "tres",
+          "target": "tres"
+        },
+        {
+          "pattern": "gastos",
+          "name": "gastos",
+          "target": "gastos"
+        }
+      ],
+      "targets": {
+        "TargetApp": {
+          "id": "App",
+          "name": "App"
+        },
+        "basico": {
+          "viewName": "Basico",
+          "viewId": "basico",
+          "id": "basico",
+          "level": 1
+        },
+        "intermedio": {
+          "viewName": "Intermedio",
+          "viewId": "intermedio",
+          "id": "intermedio",
+          "level": 1
+        },
+        "graficos": {
+          "viewName": "Graficos",
+          "viewId": "graficos",
+          "id": "graficos",
+          "level": 1
+        },
+        "logica": {
+          "viewName": "Logica",
+          "viewId": "logica",
+          "id": "logica",
+          "level": 1
+        },
+        "tres": {
+          "viewName": "Tres",
+          "viewId": "tres",
+          "id": "tres",
+          "level": 1
+        },
+        "gastos": {
+          "viewName": "Gastos",
+          "viewId": "gastos",
+          "id": "gastos",
+          "level": 1
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.jr.jrhub.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

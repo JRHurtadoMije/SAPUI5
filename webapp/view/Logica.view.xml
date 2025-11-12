@@ -1,0 +1,136 @@
+<mvc:View
+  controllerName="com.jr.jrhub.controller.Logica"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:m="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core"
+  displayBlock="true">
+
+  <m:Page id="logicaPage"
+          title="Ejercicio 4 · Lógica SAPUI5"
+          showNavButton="true"
+          navButtonPress=".onNavBack"
+          busy="{view>/busy}"
+          busyIndicatorDelay="0">
+
+    <!-- Filtros -->
+    <m:subHeader>
+      <m:OverflowToolbar id="otbFilters">
+        <m:Button id="btnBack" icon="sap-icon://nav-back" type="Transparent" press=".onNavBack" tooltip="Volver"/>
+
+        <m:ToolbarSeparator id="sepCat1"/>
+
+        <m:Label id="lblCategory" text="Categoría" labelFor="selCategory"/>
+        <m:Select id="selCategory" width="11rem"
+                  selectedKey="{view>/filters/category}"
+                  change=".onFilterChanged"
+                  items="{ path: 'sales>/categories' }">
+          <m:items>
+            <core:Item id="itmCat" key="{sales>}" text="{sales>}"/>
+          </m:items>
+        </m:Select>
+
+        <m:ToolbarSeparator id="sepPrice1"/>
+
+        <m:Label id="labelMinPrice" text="Precio mínimo" labelFor="inpMinPrice"/>
+        <m:Input id="inpMinPrice" type="Number" width="8rem"
+                 value="{view>/filters/minPrice}"
+                 liveChange=".onMinPriceLiveChange"
+                 submit=".onFilterChanged" placeholder="0"/>
+
+        <m:ToolbarSeparator id="sepDate1"/>
+
+        <m:Label id="lblFrom" text="Fecha desde" labelFor="dpFrom"/>
+        <m:DatePicker id="dpFrom"
+                      value="{view>/filters/dateFrom}"
+                      change=".onFilterChanged"
+                      displayFormat="yyyy-MM-dd"
+                      valueFormat="yyyy-MM-dd"/>
+        <m:Label id="lblTo" text="Fecha hasta" labelFor="dpTo"/>
+        <m:DatePicker id="dpTo"
+                      value="{view>/filters/dateTo}"
+                      change=".onFilterChanged"
+                      displayFormat="yyyy-MM-dd"
+                      valueFormat="yyyy-MM-dd"/>
+
+        <m:ToolbarSpacer id="spFiltersRight"/>
+
+        <m:Select id="selSort" width="10rem" selectedKey="{view>/sort/by}" change=".onSortChanged">
+          <m:items>
+            <core:Item id="itmSortDate"     key="date"     text="Fecha"/>
+            <core:Item id="itmSortCategory" key="category" text="Categoría"/>
+            <core:Item id="itmSortProduct"  key="product"  text="Producto"/>
+            <core:Item id="itmSortPrice"    key="price"    text="Importe"/>
+          </m:items>
+        </m:Select>
+
+        <m:SegmentedButton id="segSortDir"
+                           selectedKey="{= ${view>/sort/desc} ? 'desc':'asc' }"
+                           selectionChange=".onSortDirChanged">
+          <m:items>
+            <m:SegmentedButtonItem id="sgmBtnAsc" key="asc"  text="Asc"/>
+            <m:SegmentedButtonItem id="sgmBtnDesc" key="desc" text="Desc"/>
+          </m:items>
+        </m:SegmentedButton>
+
+        <m:Button id="btnToggleGroup" icon="sap-icon://group-2" tooltip="Agrupar por categoría" press=".onToggleGroup"/>
+      </m:OverflowToolbar>
+    </m:subHeader>
+
+    <!-- KPIs -->
+    <m:VBox id="vboxKpis" class="sapUiSmallMargin">
+      <m:HBox id="hboxKpis" wrap="Wrap" justifyContent="SpaceBetween">
+        <m:ObjectStatus id="kpiTotalSales" title="Ventas totales"
+                        text="{path:'view>/kpis/totalSales', formatter:'.formatter.currency'}"
+                        state="Success"/>
+        <m:ObjectStatus id="kpiTotalQty"   title="Unidades" text="{view>/kpis/totalQty}" state="Information"/>
+        <m:ObjectStatus id="kpiAvgTicket"  title="Ticket medio"
+                        text="{path:'view>/kpis/avgTicket', formatter:'.formatter.currency'}"
+                        state="None"/>
+      </m:HBox>
+    </m:VBox>
+
+    <!-- Tabla -->
+    <m:Table id="tblSales" growing="true" growingScrollToLoad="true" width="auto"
+             items="{ path: 'sales>/sales' }">
+      <m:headerToolbar>
+        <m:Toolbar id="tbHeader">
+          <m:Title id="tblTitle" text="Ventas" level="H2"/>
+          <m:ToolbarSpacer id="spHeaderRight"/>
+          <m:Button id="btnSave" icon="sap-icon://save" text="Guardar cambios" type="Emphasized" press=".onSave"/>
+        </m:Toolbar>
+      </m:headerToolbar>
+
+      <m:columns>
+        <m:Column id="colDate"><m:Text id="txtColDate" text="Mes"/></m:Column>
+        <m:Column id="colCategory"><m:Text id="txtColCategory" text="Categoría"/></m:Column>
+        <m:Column id="colProduct"><m:Text id="txtColProduct" text="Producto"/></m:Column>
+        <m:Column id="colQty" hAlign="End"><m:Text id="txtColQty" text="Unidades"/></m:Column>
+        <m:Column id="colPrice" hAlign="End"><m:Text id="txtColPrice" text="Precio unit."/></m:Column>
+        <m:Column id="colAmount" hAlign="End"><m:Text id="txtColAmount" text="Importe"/></m:Column>
+      </m:columns>
+
+      <m:items>
+        <m:ColumnListItem id="cliRow" type="Inactive">
+          <m:Text id="txtDate" text="{sales>month}"/>
+          <m:Text id="txtCategory" text="{sales>category}"/>
+          <m:Text id="txtProduct" text="{sales>name}"/>
+          <m:ObjectNumber id="onQty" number="{sales>qty}" state="Information"/>
+
+          <!-- Precio unitario: sales / qty -->
+          <m:ObjectNumber id="onUnitPrice"
+            number="{
+              parts: [ 'sales>sales', 'sales>qty' ],
+              formatter: '.formatter.unitPriceCurrency'
+            }"
+            state="None"/>
+
+          <!-- Importe total (sales) -->
+          <m:ObjectNumber id="onAmount"
+            number="{ path:'sales>sales', formatter: '.formatter.currency' }"
+            state="Success"/>
+        </m:ColumnListItem>
+      </m:items>
+    </m:Table>
+  </m:Page>
+</mvc:View>

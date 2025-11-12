@@ -1,0 +1,17 @@
+<mvc:View 
+    controllerName="com.jr.jrhub.controller.Basico"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:m="sap.m"
+    displayBlock="true">
+
+    <m:Page id="basicoPage" title="Ejercicio 1 · Básico">
+        <m:content>
+            <m:VBox id="vboxBasico" class="sapUiSmallMargin sapUiLargeMarginBeginEnd" alignItems="Center" justifyContent="Center">
+                <m:Title id="titleBasico" class="titulo1" text="Ejercicio 1 - Botón + Saludo" level="H2"/>
+                <m:Text id="textBasico"  text="Haz clic en el botón para mostrar el mensaje." class="texto1 sapUiSmallMarginBottom" />
+
+                <m:Button id="btnSaludar" class="btnSaludo" text="Púlsame" icon="sap-icon://hello-world" type="Emphasized" press=".onShowHello" />
+            </m:VBox>
+        </m:content>
+    </m:Page>
+</mvc:View>

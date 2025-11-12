@@ -1,0 +1,10 @@
+
+{
+  "products": [
+    { "name": "Laptop Pro", "category": "Electrónica" },
+    { "name": "Auriculares X", "category": "Accesorios" },
+    { "name": "Smartphone Z", "category": "Electrónica" },
+    { "name": "Mochila Travel", "category": "Viaje" },
+    { "name": "Teclado Mec", "category": "Accesorios" }
+  ]
+}

@@ -1,0 +1,199 @@
+<mvc:View
+  controllerName="com.jr.jrhub.controller.Graficos"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:m="sap.m"
+  xmlns:viz="sap.viz.ui5.controls"
+  xmlns:viz.data="sap.viz.ui5.data"
+  xmlns:core="sap.ui.core"
+  xmlns:f="sap.f"
+  xmlns:l="sap.ui.layout"
+  displayBlock="true">
+
+<m:Page id="outerPage"
+          showNavButton="true"
+          navButtonPress=".onNavBack"
+          title="Volver">
+
+  <f:DynamicPage id="chartsPage" headerExpanded="true" preserveHeaderStateOnScroll="true">
+    <!-- ===== Título + Filtros (responsive) ===== -->
+    <f:title>
+      <f:DynamicPageTitle id="dynamicPageTitle">
+      
+        <f:heading>
+          <m:Title id="titleMain" text="Ejercicio 3 · Gráficos Avanzados" level="H1" class="titulo3"/>
+        </f:heading>
+
+        <!-- Contenido compacto cuando el header se contrae -->
+        <f:snappedContent>
+          <m:OverflowToolbar id="overflowToolbar1">
+          <m:Label id="titleSelect" text="Selecciona por categorías" labelFor="selectCategory"/>
+            <!-- Select (SNAPPED) -->
+            <m:Select id="selCategorySnap" width="10rem"
+                      selectedKey="{view>/filters/category}"
+                      change=".onFilterChange">
+              <m:items>
+                <core:Item id="selCategorySnapItemAll"    key="Todas"        text="Todas"/>
+                <core:Item id="selCategorySnapItemElec"   key="Electrónica"  text="Electrónica"/>
+                <core:Item id="selCategorySnapItemAcc"    key="Accesorios"   text="Accesorios"/>
+                <core:Item id="selCategorySnapItemTravel" key="Viaje"        text="Viaje"/>
+              </m:items>
+            </m:Select>
+
+            <!-- Métrica (SNAPPED) -->
+            <m:SegmentedButton id="segMetricSnap"
+                               selectedKey="{view>/filters/metric}"
+                               selectionChange=".onMetricChange">
+              <m:items>
+                <m:SegmentedButtonItem id="segMetricSnapSales" key="sales" text="Ventas €"/>
+                <m:SegmentedButtonItem id="segMetricSnapQty"   key="qty"   text="Unidades"/>
+              </m:items>
+            </m:SegmentedButton>
+          </m:OverflowToolbar>
+        </f:snappedContent>
+
+        <!-- Contenido grande cuando el header está expandido -->
+        <f:expandedContent>
+          <m:OverflowToolbar id="overflowToolbar2">
+            <m:Label id="titleSelectEx" text="Selecciona por categorías" labelFor="selCategory"/>
+            <!-- Select (EXPANDED) -->
+            <m:Select id="selectCategory" width="12rem"
+                      selectedKey="{view>/filters/category}"
+                      change=".onFilterChange">
+              <m:items>
+                <core:Item id="selCategoryItemAll"    key="Todas"        text="Todas"/>
+                <core:Item id="selCategoryItemElec"   key="Electrónica"  text="Electrónica"/>
+                <core:Item id="selCategoryItemAcc"    key="Accesorios"   text="Accesorios"/>
+                <core:Item id="selCategoryItemTravel" key="Viaje"        text="Viaje"/>
+              </m:items>
+            </m:Select>
+            <m:ToolbarSpacer id="toolbarSpacer1"/>
+            <!-- Métrica (EXPANDED) -->
+            <m:SegmentedButton id="segMetric"
+                               selectedKey="{view>/filters/metric}"
+                               selectionChange=".onMetricChange">
+              <m:items>
+                <m:SegmentedButtonItem id="segMetricSales" key="sales" text="Ventas €"/>
+                <m:SegmentedButtonItem id="segMetricQty"   key="qty"   text="Unidades"/>
+              </m:items>
+            </m:SegmentedButton>
+
+            <m:ToolbarSeparator id="toolbarSeparator1"/>
+            <m:Label id="lblMinPrice" text="Precio ≥" labelFor="minPrice" />
+            <m:Input id="minPrice" type="Number" width="8rem"
+                     value="{view>/filters/minPrice}"
+                     submit=".onFilterChange"
+                     placeholder="0"/>
+          </m:OverflowToolbar>
+        </f:expandedContent>
+      </f:DynamicPageTitle>
+    </f:title>
+
+    <!-- ===== Contenido (Grid 12 columnas) ===== -->
+    <f:content>
+      <l:Grid
+        id="dashboardGrid"
+        class="dashboardGrid"
+        defaultSpan="XL6 L6 M12 S12"
+        hSpacing="1" vSpacing="1">
+
+        <!-- Card 1: Barras -->
+        <m:Panel id="cardBar" class="chartCard" headerText="Por categoría">
+          <m:layoutData><l:GridData id="gridDataCardBar" span="XL6 L6 M12 S12"/></m:layoutData>
+          <m:content>
+            <viz:VizFrame id="vizBar" vizType="column" width="100%" height="20rem">
+              <viz:dataset>
+                <viz.data:FlattenedDataset id="dsBar" data="{/sales}">
+                  <viz.data:dimensions>
+                    <viz.data:DimensionDefinition
+                      id="vizBarDimCategory"
+                      name="Categoría"
+                      value="{category}"/>
+                  </viz.data:dimensions>
+                  <viz.data:measures>
+                    <viz.data:MeasureDefinition
+                      id="vizBarMsrSales"
+                      name="Ventas"
+                      value="{sales}"
+                     />
+                    <viz.data:MeasureDefinition
+                      id="vizBarMsrQty"
+                      name="Unidades"
+                      value="{path: 'qty', type: 'sap.ui.model.type.Float'}"
+                      />
+                  </viz.data:measures>
+                </viz.data:FlattenedDataset>
+              </viz:dataset>
+              <viz:feeds/>
+            </viz:VizFrame>
+          </m:content>
+        </m:Panel>
+
+        <!-- Card 2: Donut -->
+        <m:Panel id="cardDonut" class="chartCard" headerText="Participación">
+          <m:layoutData><l:GridData id="gridDataCardDonut" span="XL6 L6 M12 S12"/></m:layoutData>
+          <m:content>
+            <viz:VizFrame id="vizDonut" vizType="donut" width="100%" height="20rem">
+              <viz:dataset>
+                <viz.data:FlattenedDataset id="dsDonut" data="{/sales}">
+                  <viz.data:dimensions>
+                    <viz.data:DimensionDefinition
+                      id="vizDonutDimCategory"
+                      name="Categoría"
+                      value="{category}"/>
+                  </viz.data:dimensions>
+                  <viz.data:measures>
+                    <viz.data:MeasureDefinition
+                      id="vizDonutMsrSales"
+                      name="Ventas"
+                      value="{sales}"
+                      />
+                    <viz.data:MeasureDefinition
+                      id="vizDonutMsrQty"
+                      name="Unidades"
+                      value="{path: 'qty', type: 'sap.ui.model.type.Float'}"
+                      />
+                  </viz.data:measures>
+                </viz.data:FlattenedDataset>
+              </viz:dataset>
+              <viz:feeds/>
+            </viz:VizFrame>
+          </m:content>
+        </m:Panel>
+
+        <!-- Card 3: Línea (toda la fila) -->
+        <m:Panel id="cardLine" class="chartCard" headerText="Tendencia (meses)">
+          <m:layoutData><l:GridData id="gridDataCardLine" span="XL12 L12 M12 S12"/></m:layoutData>
+          <m:content>
+            <viz:VizFrame id="vizLine" vizType="line" width="100%" height="18rem">
+              <viz:dataset>
+                <viz.data:FlattenedDataset id="dsLine" data="{/sales}">
+                  <viz.data:dimensions>
+                    <viz.data:DimensionDefinition
+                      id="vizLineDimMonth"
+                      name="Mes"
+                      value="{month}"/>
+                  </viz.data:dimensions>
+                  <viz.data:measures>
+                    <viz.data:MeasureDefinition
+                      id="vizLineMsrSales"
+                      name="Ventas"
+                      value="{sales}"
+                      />
+                    <viz.data:MeasureDefinition
+                      id="vizLineMsrQty"
+                      name="Unidades"
+                      value="{path: 'qty', type: 'sap.ui.model.type.Float'}"
+                      />
+                  </viz.data:measures>
+                </viz.data:FlattenedDataset>
+              </viz:dataset>
+              <viz:feeds/>
+            </viz:VizFrame>
+          </m:content>
+        </m:Panel>
+
+      </l:Grid>
+    </f:content>
+  </f:DynamicPage>
+  </m:Page>
+</mvc:View>

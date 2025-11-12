@@ -1,0 +1,101 @@
+<mvc:View
+    controllerName="com.jr.jrhub.controller.Tres"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    
+    
+<Page id="pageTres"
+          class="tresBackground sapUiContentPadding"
+          showNavButton="true"
+          navButtonPress=".onNavBack">
+
+        <!-- Header personalizado con Bar + Title -->
+        <customHeader>
+            <Bar id="tresHeader" class="tresHeaderBar">
+                <contentLeft>
+                    <!-- Botón volver consistente (por si prefieres icono) -->
+                    <Button id="btnVolver" icon="sap-icon://nav-back"
+                            type="Transparent"
+                            text="Volver"
+                            press=".onNavBack"/>
+                </contentLeft>
+                <contentMiddle>
+                    <!-- Título con estilo “pill” -->
+                    <Title id="pageTitle" text="Tres en Raya" class="tresTitlePill"/>
+                </contentMiddle>
+                <contentRight>
+                    <!-- (Opcional) Aquí podemos añadir un marcador más adelante -->
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <VBox id="vboxTres" class="tresContent">
+                <l:Grid id="gridBoard" defaultSpan="L4 M4 S4" hSpacing="1" vSpacing="1" width="300px" class="tresBoard">
+                    <l:content>
+                        <!-- Fila 1 -->
+                        <Button id="square_one" text="{/board/0/0}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="0,0"/>
+                            </customData>
+                        </Button>
+                        <Button id="square_two" text="{/board/0/1}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="0,1"/>
+                            </customData>
+                        </Button>
+                        <Button id="square_three" text="{/board/0/2}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="0,2"/>
+                            </customData>
+                        </Button>
+                        <!-- Fila 2 -->
+                        <Button id="square_four" text="{/board/1/0}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="1,0"/>
+                            </customData>
+                        </Button>
+                        <Button id="square_five" text="{/board/1/1}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="1,1"/>
+                            </customData>
+                        </Button>
+                        <Button id="square_six" text="{/board/1/2}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="1,2"/>
+                            </customData>
+                        </Button>
+                        <!-- Fila 3 -->
+                        <Button id="square_seven" text="{/board/2/0}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="2,0"/>
+                            </customData>
+                        </Button>
+                        <Button id="square_eight" text="{/board/2/1}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="2,1"/>
+                            </customData>
+                        </Button>
+                        <Button id="square_nine" text="{/board/2/2}" press="onCellPress" class="tresCell">
+                            <customData>
+                                <core:CustomData key="boardIndex" value="2,2"/>
+                            </customData>
+                        </Button>
+                    </l:content>
+                </l:Grid>
+
+                <Button id="btnReset" text="Reiniciar" press="onReset" type="Emphasized" class="tresBtnRst sapUiMediumMarginTop"/>
+            </VBox>
+
+            <!-- Diálogo de fin de juego -->
+            <Dialog id="gameOverDialog" title="Game Over" class="tresModal">
+                <VBox id="modalContent" class="tresModalContent">
+                    <Text id="modalText" text="{/winner}" class="tresModalText"/>
+                    <Button id="restartBtn" text="¿Jugar otra vez?" press="onReset" type="Default"/>
+                </VBox>
+            </Dialog>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,83 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="com.jr.jrhub.controller.Gastos">
+
+    <Page id="pageGastos" title="{i18n>titleGastos}">
+        <content>
+            <VBox id="vboxFilter" class="sapUiSmallMargin">
+                <Toolbar id="toolbarFiltros">
+                    <Title id="titleFiltros" text="Filtros" level="H3" />
+                </Toolbar>
+
+                <HBox id="hboxFiltros">
+                    <Select id="selFiltroCategoria" items="{gastosLocal>/categorias}">
+                        <items>
+                        <core:Item id="textItem"  key="{gastosLocal>key}" text="{gastosLocal>text}" />
+                        </items>
+                    </Select>
+                    <DateRangeSelection id="drFiltroFechas" delimiter="-" />
+                    <Input id="inpImporteMin" placeholder="Importe mínimo" type="Number" />
+                    <Input id="inpImporteMax" placeholder="Importe máximo" type="Number" />
+                    <Button id="btnAplicarFiltros" text="Aplicar" press=".onFiltrarGastos" type="Emphasized" />
+                    
+                </HBox>
+            </VBox>
+
+            <VBox id="vboxGastos" class="sapUiSmallMargin">
+                <Button
+                    id="btnAddGasto"
+                    text="{i18n>btnAddGasto}"
+                    type="Emphasized"
+                    press=".onAddGasto"
+                    class="sapUiSmallMarginBottom" />
+
+                <Table
+                    id="tblGastos"
+                    inset="false"
+                    items="{gastosLocal>/Gastos}">
+                    <headerToolbar>
+                        <Toolbar id="toolbarGastos">
+                            <Title id="titleGastosTable" text="{i18n>tblTitle}" level="H2" />
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column id="colFecha">
+                            <Text id="txtColFecha" text="{i18n>colFecha}" />
+                        </Column>
+                        <Column id="colCategoria">
+                            <Text id="txtColCategoria" text="{i18n>colCategoria}" />
+                        </Column>
+                        <Column id="colDescripcion">
+                            <Text id="txtColDescripcion" text="{i18n>colDescripcion}" />
+                        </Column>
+                        <Column id="colImporte">
+                            <Text id="txtColImporte" text="{i18n>colImporte}" />
+                        </Column>
+                        <Column id="colAcciones">
+                            <Text id="txtColAcciones" text="{i18n>colAcciones}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="cliGasto">
+                            <cells>
+                                <Text id="txtFecha" text="{gastosLocal>fecha}" />
+                                <Text id="txtCategoria" text="{gastosLocal>categoria}" />
+                                <Text id="txtDescripcion" text="{gastosLocal>descripcion}" />
+                                <ObjectNumber id="objImporte" number="{gastosLocal>importe}" unit="€" />
+                                <Button id="btnDeleteGasto" icon="sap-icon://delete" type="Transparent" press=".onDeleteGasto" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+            
+            <VBox id="vboxGrafico" class="sapUiSmallMargin">
+                <core:Fragment fragmentName="com.jr.jrhub.view.fragments.Grafico" type="XML" />
+            </VBox>
+
+
+        </content>
+    </Page>
+</mvc:View>

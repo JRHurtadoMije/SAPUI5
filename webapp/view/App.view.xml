@@ -1,0 +1,43 @@
+<mvc:View controllerName="com.jr.jrhub.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:t="sap.tnt">
+    <t:ToolPage id="toolPage" sideExpanded="false">
+        <t:header>
+            <t:ToolHeader id="toolHeader">
+                <m:Button id="btnToggleSidenav" icon="sap-icon://menu2" type="Transparent" press=".onToggleSideNav" />
+                <m:Title id="appTitle" text="{i18n>appTitle}" level="H3" />
+                <m:ToolbarSpacer id="thSpacer" />
+                
+            </t:ToolHeader>
+        </t:header>
+
+        <t:sideContent>
+            <t:SideNavigation  id="sideNav">
+                <t:NavigationList id="sideList" itemSelect=".onItemSelect">
+                    <t:NavigationListItem id="itemEj1" text="Ejercicio 1 - Básico" key="basico" icon="sap-icon://learning-assistant"/>
+                    <t:NavigationListItem id="itemEj2" text="Ejercicio 2 - Intermedio" key="intermedio" icon="sap-icon://developer-settings"/>
+                    <t:NavigationListItem id="itemEj3" text="Ejercicio 3 - Gráficos Avanzados" key="graficos" icon="sap-icon://line-chart"/>
+                    <t:NavigationListItem id="itemEj4" text="Ejercicio 4 - Lógica SAP UI5" key="logica" icon="sap-icon://lab"/>
+                    <t:NavigationListItem id="itemEj5" text="Ejercicio 5 - Tres en Raya" key="tres" icon="sap-icon://game"/>
+                    <t:NavigationListItem id="itemEj6" text="Ejercicio 6 - Hoja de gastos" key="gastos" icon="sap-icon://expense-report"/>
+                </t:NavigationList>
+            </t:SideNavigation>
+        </t:sideContent>
+
+        <t:mainContents>
+            <m:NavContainer id="navContainer">
+                <m:Page id="homePage" title="Bienvenido al Hub de Ejercicios SAPUI5">
+                    <m:content>
+                        <m:VBox id="welcomBox" class="sapUiSmallMargin sapUiMediumMarginBeginEnd" alignItems="Center" justifyContent="Center">
+                            <m:Image id="welcomeLogo" src="https://sap.github.io/ui5-webcomponents/assets/images/ui5-logo.svg" height="150px"/>
+                            <m:Title id="welcomeTitle" text="Selecciona un Ejercicio en el menú lateral" level="H2"/>
+                        </m:VBox>
+                    </m:content>
+                    
+                </m:Page>
+            </m:NavContainer>
+            
+        </t:mainContents>
+    </t:ToolPage>
+</mvc:View>

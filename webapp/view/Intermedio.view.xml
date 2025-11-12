@@ -1,0 +1,40 @@
+
+
+<mvc:View
+    controllerName="com.jr.jrhub.controller.Intermedio"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    displayBlock="true">
+
+    <m:Page id="intermedioPage"
+            title="Ejercicio 2 · Intermedio"
+            showNavButton="true"
+            navButtonPress=".onNavBack">
+
+        
+        <m:content>
+        
+            
+            <m:Panel id="productPanel" headerText="Productos" class="panelCard sapUiResponsiveMargin">
+            <m:VBox id="productVBox" class="innerCard" alignItems="Stretch">
+                <m:Title id="productTitle" text="Listado de Productos" level="H2" class="titulo2" textAlign="Center"/>
+                <m:List id="productList"
+                        class="listInCard"
+                        items="{/products}"
+                        mode="SingleSelectMaster"
+                        inset="false"
+                        selectionChange=".onSelectItem">
+                <m:StandardListItem id="productListItem"
+                                    title="{name}"
+                                    description="{category}"
+                                    icon="sap-icon://product"
+                                    type="Active" />
+                </m:List>
+            </m:VBox>
+            </m:Panel>
+
+
+        </m:content>
+
+    </m:Page>
+</mvc:View>

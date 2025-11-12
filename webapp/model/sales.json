@@ -1,0 +1,16 @@
+{
+  "sales": [
+    { "name": "Laptop Pro",     "category": "Electrónica", "sales": 1299.99, "qty": 1, "month": "2025-01" },
+    { "name": "Auriculares X",  "category": "Accesorios",  "sales":   89.90, "qty": 1, "month": "2025-01" },
+    { "name": "Smartphone Z",   "category": "Electrónica", "sales":  799.00, "qty": 1, "month": "2025-02" },
+    { "name": "Mochila Travel", "category": "Viaje",       "sales":   59.95, "qty": 1, "month": "2025-02" },
+    { "name": "Teclado Mec",    "category": "Accesorios",  "sales":  119.50, "qty": 1, "month": "2025-03" },
+
+    { "name": "Laptop Pro",     "category": "Electrónica", "sales": 1399.00, "qty": 1, "month": "2025-03" },
+    { "name": "Auriculares X",  "category": "Accesorios",  "sales":   89.90, "qty": 1, "month": "2025-03" },
+    { "name": "Smartphone Z",   "category": "Electrónica", "sales":  799.00, "qty": 1, "month": "2025-04" },
+    { "name": "Mochila Travel", "category": "Viaje",       "sales":   59.95, "qty": 1, "month": "2025-04" },
+    { "name": "Teclado Mec",    "category": "Accesorios",  "sales":  119.50, "qty": 1, "month": "2025-04" }
+  ],
+  "categories": ["Todas", "Electrónica", "Accesorios", "Viaje"]
+}
