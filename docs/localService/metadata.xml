@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="GastosService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="Gasto">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="fecha" Type="Edm.String"/>
+        <Property Name="categoria" Type="Edm.String"/>
+        <Property Name="descripcion" Type="Edm.String"/>
+        <Property Name="importe" Type="Edm.Decimal"/>
+      </EntityType>
+      <EntityContainer Name="GastosServiceContainer">
+        <EntitySet Name="Gastos" EntityType="GastosService.Gasto"/>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

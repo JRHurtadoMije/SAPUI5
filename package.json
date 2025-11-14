@@ -1,5 +1,4 @@
-
-  {
+{
   "name": "jrhub",
   "version": "0.0.1",
   "description": "Aplicacion con todos los ejercicios SAPUI5",
@@ -11,7 +10,7 @@
   "main": "webapp/index.html",
   "devDependencies": {
     "@sap/ux-ui5-tooling": "^1.19.3",
-    "@ui5/cli": "^4.0.32"
+    "@ui5/cli": "^4.0.34"
   },
   "scripts": {
     "start": "ui5 serve -o index.html",

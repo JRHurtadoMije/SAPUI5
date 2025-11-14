@@ -1,0 +1,155 @@
+/* ==========================
+   Ejercicio 4 · Lógica SAPUI5
+   Vista: Logica.view.xml
+   ========================== */
+
+/* Página del ejercicio: fondo suave */
+.sapMPage[id$="logicaPage"] {
+  background:
+    radial-gradient(circle at top left, rgba(63, 81, 181, 0.06), transparent 55%),
+    #f3f4f6;
+  box-shadow: none;
+}
+
+/* ==========================
+   Filtros (OverflowToolbar)
+   ========================== */
+
+.sapMPage[id$="logicaPage"] .sapMTB[id$="otbFilters"] {
+  background: #ffffff;
+  padding: 0.45rem 1rem;
+  gap: 0.6rem;
+  border-bottom: 1px solid rgba(209, 213, 219, 0.95);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.14);
+}
+
+/* Label de filtros */
+.sapMPage[id$="logicaPage"] .sapMTB[id$="otbFilters"] .sapMLabel {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* Controles redondeados tipo "pill" */
+.sapMPage[id$="logicaPage"] .sapMTB[id$="otbFilters"] .sapMSlt,
+.sapMPage[id$="logicaPage"] .sapMTB[id$="otbFilters"] .sapMInputBase,
+.sapMPage[id$="logicaPage"] .sapMTB[id$="otbFilters"] .sapMDatePicker,
+.sapMPage[id$="logicaPage"] .sapMTB[id$="otbFilters"] .sapMSegB {
+  border-radius: 999px;
+}
+
+/* Botón back y agrupar más suaves */
+.sapMPage[id$="logicaPage"] .sapMTB[id$="otbFilters"] .sapMBtn[id$="btnBack"] .sapMBtnInner,
+.sapMPage[id$="logicaPage"] .sapMTB[id$="otbFilters"] .sapMBtn[id$="btnToggleGroup"] .sapMBtnInner {
+  border-radius: 999px;
+}
+
+/* ==========================
+   KPIs superiores
+   ========================== */
+
+.sapMPage[id$="logicaPage"] .sapMVBox[id$="vboxKpis"] {
+  padding: 1rem 1.5rem 0.4rem;
+}
+
+.sapMPage[id$="logicaPage"] .sapMHBox[id$="hboxKpis"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Cada ObjectStatus como tarjeta compacta */
+.sapMPage[id$="logicaPage"] .sapMHBox[id$="hboxKpis"] .sapMObjStatus {
+  padding: 0.5rem 0.85rem;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+/* Titulitos de KPI un poco más marcados */
+.sapMPage[id$="logicaPage"] .sapMHBox[id$="hboxKpis"] .sapMObjStatusTitle {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Valores KPI */
+.sapMPage[id$="logicaPage"] .sapMHBox[id$="hboxKpis"] .sapMObjStatusText {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Colores suaves por ID (opcionales) */
+.sapMPage[id$="logicaPage"] #kpiTotalSales.sapMObjStatus .sapMObjStatusText {
+  color: #2563eb;
+}
+
+.sapMPage[id$="logicaPage"] #kpiTotalQty.sapMObjStatus .sapMObjStatusText {
+  color: #0f766e;
+}
+
+.sapMPage[id$="logicaPage"] #kpiAvgTicket.sapMObjStatus .sapMObjStatusText {
+  color: #7c3aed;
+}
+
+/* ==========================
+   Tabla de ventas
+   ========================== */
+
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] {
+  margin: 0.5rem 1.5rem 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+  background: #ffffff;
+}
+
+/* Toolbar de cabecera (título + Guardar) */
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] #tbHeader.sapMTB {
+  background: linear-gradient(to right, #111827, #1d4ed8);
+  padding-inline: 1rem;
+}
+
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] #tblTitle.sapMTitle {
+  color: #eff6ff;
+  font-weight: 600;
+}
+
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] #btnSave .sapMBtnInner {
+  border-radius: 999px;
+}
+
+/* Cabeceras de columnas */
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] .sapMListTblCol,
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] .sapMListTblColCell {
+  background: #111827;
+  color: #e5e7eb;
+  border-color: #111827;
+  font-weight: 500;
+}
+
+/* Filas alternas */
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] .sapMListTblRow {
+  background: #ffffff;
+}
+
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] .sapMListTblRow:nth-child(odd) {
+  background: #f9fafb;
+}
+
+/* Cantidades y precios alineados y marcados */
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] #onQty.sapMObjectNumber,
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] #onUnitPrice.sapMObjectNumber,
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] #onAmount.sapMObjectNumber {
+  font-weight: 600;
+}
+
+/* Columna de importe en verde suave */
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] #onAmount.sapMObjectNumber .sapMObjectNumberText {
+  color: #16a34a;
+}
+
+/* Hover filas */
+.sapMPage[id$="logicaPage"] .sapMTable[id$="tblSales"] .sapMListTblRow:hover {
+  background: #e5e7eb;
+  transition: background 0.12s ease-in-out;
+}

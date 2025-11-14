@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:core="sap.ui.core">
+
+    <VBox class="sapUiSmallMargin">
+        <Title text="Gastos por Categoría" level="H3" />
+        <viz:VizFrame id="graficoGastos" height="400px" width="100%" vizType="column">
+            <viz:dataset>
+                <viz.data:FlattenedDataset data="{gastosLocal>/Gastos}">
+                    <viz.data:dimensions>
+                        <viz.data:DimensionDefinition name="Categoría" value="{gastosLocal>categoria}" />
+                    </viz.data:dimensions>
+                    <viz.data:measures>
+                        <viz.data:MeasureDefinition name="Importe" value="{gastosLocal>importe}" />
+                    </viz.data:measures>
+                </viz.data:FlattenedDataset>
+            </viz:dataset>
+            <viz:feeds>
+                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Categoría" />
+                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Importe" />
+            </viz:feeds>
+        </viz:VizFrame>
+    </VBox>
+</core:FragmentDefinition>

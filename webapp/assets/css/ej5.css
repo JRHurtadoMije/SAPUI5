@@ -1,0 +1,312 @@
+/* ===========================
+   Estilos juego Tres en raya
+   =========================== */
+
+/* Header / barra */
+
+.sapMBarContainer {
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.tresHeaderBar.sapMBar {
+  background: rgba(255,255,255,0.10) !important;
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  align-items: center !important;
+}
+
+[id$="pageTitle"].sapMTitle.tresTitlePill {
+  display: flex;
+  left: -3rem !important;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  color: #ffffff !important;
+  letter-spacing: .2px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08),
+              inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+.tresBackground {
+  background: linear-gradient(to left, #444fe9, #8087f0, #ffffff);
+}
+
+/* Contenido centrado */
+
+.tresContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+/* Tablero */
+
+.tresBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 0.5rem;
+  justify-content: center;
+}
+
+.tresBoard .sapMBtn {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20%;
+  opacity: 1 !important;
+  width: 100px;
+  height: 100px;
+  padding: 0 !important;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  color: white;
+  overflow: visible !important;
+  display: inline-flex;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tresCell.sapMBtn .sapMBtnInner {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: visible !important;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1b1d6e !important;
+  background: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.tresCell.sapMBtn .sapMBtnContent {
+  line-height: 1 !important;
+  overflow: visible !important;
+}
+
+.tresCell.sapMBtn:hover .sapMBtnInner,
+.tresCell.sapMBtn:active .sapMBtnInner,
+.tresCell.sapMBtn:focus .sapMBtnInner {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.tresCell.sapMBtn:focus .sapMBtnInner {
+  outline: 2px solid rgba(255, 255, 255, 0.5) !important;
+  outline-offset: -2px;
+}
+
+.tresBoard .sapMBtn:hover {
+  transform: scale(1.05);
+}
+
+/* Diálogo personalizado */
+.sapMDialog {
+  text-align: center;
+}
+
+.tresModal.sapMDialog {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+}
+
+.tresModal .sapMDialogTitle {
+  background: linear-gradient(90deg, #EF798A, #D76D77);
+  color: #ffffff !important;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-bottom: none !important;
+}
+
+.tresModal .sapMDialogSection {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(2px);
+  padding: 1rem 1.25rem !important;
+}
+
+.tresModal .tresModalText {
+  margin: 0.5rem 0 1rem 0;
+  font-size: 1.2rem;
+  color: #2c2c2c;
+}
+
+/* Botón Reset */
+
+#btnReset.sapMBtn .sapMBtnInner {
+  background-color: #2d5172 !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 10px 20px !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#btnReset.sapMBtn .sapMBtnInner .sapMBtnContent {
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+#btnReset.sapMBtn:hover .sapMBtnInner {
+  background-color: #2e5f8d !important;
+}
+
+#btnReset.sapMBtn:focus .sapMBtnInner {
+  outline: 2px solid rgba(255, 255, 255, 0.7) !important;
+  outline-offset: 2px;
+}
+
+/* Reset por sufijo */
+
+[id$="btnReset"].sapMBtn .sapMBtnInner {
+  background-color: #4079ad !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  padding: 10px 20px !important;
+  border: none !important;
+  box-shadow: none !important;
+  align-items: center !important;
+}
+
+[id$="btnReset"].sapMBtn:hover .sapMBtnInner {
+  background-color: #2e5f8d !important;
+}
+
+[id$="btnReset"].sapMBtn:focus .sapMBtnInner {
+  outline: 2px solid rgba(255, 255, 255, .7) !important;
+  outline-offset: 2px;
+}
+
+[id$="btnReset"].sapMBtn .sapMBtnInner .sapMBtnContent {
+  font-family: "72", "72full", Arial, sans-serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  display: inline-block !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+[id$="btnReset"].sapMBtn .sapMBtnInner::before,
+[id$="btnReset"].sapMBtn .sapMBtnInner::after {
+  content: none !important;
+}
+
+/* Dialog Game Over */
+
+[id$="gameOverDialog"].sapMDialog {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .25) !important;
+}
+
+[id$="gameOverDialog"].sapMDialog > .sapMDialogTitle .sapMBar {
+  background: linear-gradient(90deg, #EF798A, #D76D77) !important;
+  color: #fff !important;
+  border-bottom: none !important;
+}
+
+[id$="gameOverDialog"].sapMDialog > .sapMDialogTitle .sapMBar .sapMTitle,
+[id$="gameOverDialog"].sapMDialog > .sapMDialogTitle .sapMBar .sapMTitle span {
+  color: #fff !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+[id$="gameOverDialog"].sapMDialog > .sapMDialogSection {
+  background: rgba(255, 255, 255, .94) !important;
+  backdrop-filter: blur(2px);
+  padding: 1rem 1.25rem !important;
+}
+.tresScoreBox {
+  display: flex;
+  align-items: center;
+  gap: 3rem !important;
+  font-size: 700;
+  font-weight: 700;
+}
+
+.tresScoreX { color: #020458; }
+.tresScoreO { color: #970101; }
+.tresScoreEmpate { color: #dfee0a; }
+
+/* Texto del mensaje */
+
+[id$="modalText"].tresModalText {
+  color: #2c2c2c !important;
+  font-size: 1.4rem !important;
+  margin: 0.5rem 0 1rem 0 !important;
+}
+
+/* Botón "¿Jugar otra vez?" */
+
+[id$="restartBtn"].sapMBtn .sapMBtnInner {
+  background: #3A1C71 !important;
+  color: #fff !important;
+  padding: 8px 14px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  box-shadow: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+[id$="restartBtn"].sapMBtn:hover .sapMBtnInner {
+  background: #291452 !important;
+}
+
+[id$="restartBtn"].sapMBtn .sapMBtnInner .sapMBtnContent {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  display: inline-block !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+[id$="restartBtn"].sapMBtn .sapMBtnInner::before,
+[id$="restartBtn"].sapMBtn .sapMBtnInner::after {
+  content: none !important;
+}
+
+/* Animación marcas */
+
+.markedX,
+.markedO {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 480px) {
+  [id$="pageTitle"].sapMTitle.tresTitlePill {
+    font-size: 1rem;
+    padding: .22rem .65rem;
+  }
+}
